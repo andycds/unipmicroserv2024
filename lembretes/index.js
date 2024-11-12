@@ -30,6 +30,11 @@ app.post('/lembretes', async (req, res) => {
     res.status(201).send(lembretes[contador])
 })
 
+app.post("/eventos", (req, res) => {
+    console.log(req.body);
+    res.send({ msg: "ok" });
+});
+
 app.listen(4000, () => {
     console.log('Lembretes. Porta 4000')
 })
