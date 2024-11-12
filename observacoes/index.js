@@ -38,4 +38,4 @@ app.post("/eventos", (req, res) => {
     res.send({ msg: "ok" });
 });
 
-app.listen(5000, () => console.log("Lembretes. Porta 5000"));
+app.listen(5000, () => console.log("Lembretes. Porta 5000."));
