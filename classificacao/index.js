@@ -17,23 +17,9 @@ const funcoes = {
 }
 
 app.post('/eventos', (req, res) => {
-    // console.log("Tipo: " + req.body.tipo)
-    // console.log("Dados: " + req.body.dados)
-    // try {
-    //     funcoes[req.body.tipo](req.body.dados)
-    // } catch (err) {
-    //     console.log("Ignorando: " + req.body.tipo)
-    // }
-    if (req.body.tipo === "ObservacaoCriada") {
-        const observacao = req.body.dados;
-        observacao.status = observacao.texto.includes(palavraChave)
-            ? "importante"
-            : "comum"
-        axios.post('http://localhost:10000/eventos', {
-            tipo: "ObservacaoClassificada",
-            dados: observacao
-        })
-    } else {
+    try {
+        funcoes[req.body.tipo](req.body.dados)
+    } catch (err) {
         console.log("Ignorando: " + req.body.tipo)
     }
     res.send({ msg: "ok" })
