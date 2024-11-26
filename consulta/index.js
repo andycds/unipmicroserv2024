@@ -1,4 +1,5 @@
 const express = require('express')
+const axios = require('axios')
 const app = express()
 app.use(express.json())
 
@@ -33,4 +34,14 @@ app.post("/eventos", (req, res) => {
     res.send({ msg: "ok" })
 })
 
-app.listen(6001, () => console.log("Consultas. Porta 6001."))
+app.listen(6001, async () => {
+    console.log("Consultas. Porta 6001.")
+    const resp = await axios.get('http://localhost:10000/eventos')
+    resp.data.forEach((valor, indice, colecao) => {
+        try {
+            funcoes[valor.tipo](valor.dados);
+        } catch (err) {
+            console.log("Ignorando ao subir: " + valor.tipo)
+        }
+    })
+})
