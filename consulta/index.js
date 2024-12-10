@@ -1,7 +1,9 @@
 const express = require('express')
 const axios = require('axios')
 const app = express()
+const cors = require('cors')
 app.use(express.json())
+app.use(cors())
 
 const baseConsulta = {}
 
